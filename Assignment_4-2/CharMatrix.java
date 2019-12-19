@@ -112,13 +112,22 @@ public class CharMatrix {
      * Displays the contents of the matrix m
      */
     public void display () {
+        System.out.println("{");
         for (int r = 0; r < m.length; r++) {
-            for (int c = 0; c < m[0].length; c++) {
-                System.out.print(m[r][c]);
+            System.out.print("{");
+            for (int c = 0; c < m [0].length; c++) {
+                System.out.print("'" + m[r][c] + "'");
+                if (c < m [0].length - 1) {
+                    System.out.print(", ");
+                }
             }
-            System.out.println("");
+            System.out.print("}");
+            if (r < m.length - 1) {
+                System.out.print(",");
+            }
+            System.out.println();
         }
-        System.out.println("");
+        System.out.println("}");
     }
 
     public static void main (String[] args) {
@@ -126,27 +135,31 @@ public class CharMatrix {
 
         //program in your test cases here. Invoke methods from the
         //object called matrix, like this:
-        
+
+        System.out.println("m after assigning it to an array with 5 rows and 8 columns all the elements of which are ' '");
         matrix = new CharMatrix(5, 8);
         matrix.display();
+        System.out.println("m after assigning it to an array with 4 rows and 6 columns all the elements of which are 'C'");
         matrix = new CharMatrix(4, 6, 'C');
         matrix.display();
-        System.out.println(matrix.numRows());
-        System.out.println(matrix.numCols());
-        System.out.println(matrix.charAt(3, 2));
-        matrix.setCharAt(3, 0, ' ');
+        System.out.println("The number of rows in m is " + matrix.numRows());
+        System.out.println("The number of columns in m is " + matrix.numCols());
+        System.out.println("m after assigning the element in row 3 and in column 2 to ' ' is ");
+        matrix.setCharAt(3, 2, ' ');
         matrix.display();
-        System.out.println(matrix.isEmpty(3, 0));
-        System.out.println(matrix.isEmpty(3, 2));
+        System.out.println("The element in row 3 and in column 2 is '" + matrix.charAt(3, 2) + "'");
+        System.out.println("That the element in row 3 and in column 0 is ' ' is " + matrix.isEmpty(3, 0));
+        System.out.println("That the element in row 3 and in column 2 is ' ' is " + matrix.isEmpty(3, 2));
+        System.out.println("m after assigning every element with a row number between 1 and 2 and a column number between 2 and 5 to ':'");
         matrix.fillRect(1, 2, 2, 5, ':');
         matrix.display();
-        matrix.clearRect(1, 4, 3, 4);
-        System.out.println(matrix.countInCol(3));
-        System.out.println(matrix.countInRow(1));
+        System.out.println("m after assigning every element with a row number between 1 and 2 and a column number between 4 and 5 to ' '");
+        matrix.clearRect(1, 4, 2, 5);
+        matrix.display();
+        System.out.println("The number of elements in column 3 that aren't ' ' is " + matrix.countInCol(3));
+        System.out.println("The number of elements in row 1 that aren't ' ' is " + matrix.countInRow(1));
     }
 }
-
-
 
 
 
